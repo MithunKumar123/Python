@@ -1,16 +1,21 @@
 import function
 import PySimpleGUI as psg
 import time
+import os
+
+if not os.path.exists("todos.txt"):
+    with open("todos.txt", "w") as new_file:
+        pass
 
 psg.theme("Purple")
 clock = psg.Text('',key='clock')
 label = psg.Text("Type in a todo")
 input_box = psg.InputText(tooltip="Enter todo",
                           key='todo')
-add_button = psg.Button("Add")
+add_button = psg.Button(key="Add", size=2, image_source="add.png", mouseover_colors="lightBlue2", tooltip="Add todo")
 list_box = psg.Listbox(values=function.get_todos(), key='todos', enable_events=True, size=[45,20])
 edit_button = psg.Button("Edit")
-complete_button = psg.Button("Complete")
+complete_button = psg.Button(key="Complete", size=2, image_source="complete.png", mouseover_colors="lightBlue2", tooltip="Mark as completed")
 exit_button = psg.Button("Exit")
 layout = [[clock],
           [label],
@@ -30,6 +35,8 @@ while True:
             new_todo = values['todo'] + "\n"
             todos.append(new_todo)
             function.write_todos(todos)
+            window['todos'].update(values=todos)
+            window['todo'].update(value='')
         case 'Edit':
             try:
                 todo_to_edit = values["todos"][0]

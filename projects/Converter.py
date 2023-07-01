@@ -12,13 +12,19 @@ input_2 = psg.Input(key="inches")
 result_text = psg.Text(key="output", text_color="green")
 
 convert_button = psg.Button("Convert")
+exit_button = psg.Button('Exit')
 window = psg.Window("Converter", layout=[
                                     [label_1, input_1],
                                     [label_2, input_2],
-                                    [convert_button, result_text]
+                                    [convert_button, exit_button, result_text]
                                 ])
 while True:
     event, values = window.read()
+    match event:
+        case psg.WIN_CLOSED:
+            break
+        case 'Exit':
+            break
     feet = float(values['feet'])
     inches = float(values['inches'])
     meters = convert(feet, inches)
