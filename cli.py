@@ -1,8 +1,9 @@
-import  function as module
+import function as module
+import time
 
+now = time.strftime("%b %d, %Y %H:%M:%S")
 user_prompt = 'Enter a todo:'
-
-
+print(f"Today's date is: {now}")
 while True:
     action = input("Enter add or show or edit or complete or exit: ").strip()
 
