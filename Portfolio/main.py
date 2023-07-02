@@ -11,3 +11,5 @@ with col_2:
     sl.title("Mithunkumar Selvaraj")
     content = """This is a sample content and needs to be modified from the data source on the fly"""
     sl.info(content)
+
+sl.write("Below you can find some apps which I built in python, Feel free to contact me")
