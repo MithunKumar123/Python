@@ -1,4 +1,5 @@
 import streamlit as sl
+import pandas as p
 
 sl.set_page_config(layout="wide")
 
@@ -13,3 +14,13 @@ with col_2:
     sl.info(content)
 
 sl.write("Below you can find some apps which I built in python, Feel free to contact me")
+
+col_3, col_4 = sl.columns(2)
+data = p.read_csv("data.csv", sep=";")
+with col_3:
+    for index, row in data[:10].iterrows():
+        sl.header(row['title'])
+
+with col_4:
+    for index, row in data[10:].iterrows():
+        sl.header(row['title'])
