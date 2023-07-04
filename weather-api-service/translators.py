@@ -9,11 +9,13 @@ def home():
     return render_template("translator-home.html")
 
 
-@app.route("/api/v1/<words>")
-def details(words):
-    definition = words.upper()
+@app.route("/api/v1/<word>")
+def details(word):
+    file_name = "Dictonary/dictionary.csv"
+    content = p.read_csv(file_name)
+    definition = content.loc[content["word"] == word]["definition"].squeeze()
     return {
-        "word": words,
+        "word": word,
         "definition": definition
     }
 
